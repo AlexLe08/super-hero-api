@@ -6,13 +6,17 @@
   "scripts": {
     "dev": "npm run migrate:dev && npm run server:dev",
     "migrate:dev": "./node_modules/.bin/sequelize db:migrate --env development --config ./config/sequelize.js",
+    "migrate:prod": "./node_modules/.bin/sequelize db:migrate --env production --config ./config/sequelize.js",
     "server:dev": "./node_modules/.bin/nodemon index.js",
+    "server:prod": "node index.js",
+    "start": "npm run migrate:prod && npm server:prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "mysql2": "^1.6.5",

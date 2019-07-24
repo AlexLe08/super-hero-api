@@ -1,8 +1,22 @@
 var express = require('express')
 var bodyParser = require('body-parser')
+var cors = require('cors')
 var models = require('./models')
 
 var app = express()
+
+var origin = process.env.NODE_ENV === 'production'
+  ? ['https://superheroes.com', 'https://www.superheroes.com']
+  : '*'
+
+var corsOptions = {
+  origin,
+  allowedHeaders: ['Content-Type'],
+  methods: 'GET,POST',
+  optionsSuccessStatus: 200, // some legacy browsers choke on 204
+}
+
+app.use(cors(corsOptions))
 
 app.get('/heroes', (request, response) => {
   models.Heroes.findAll({ include: { model: models.Teams } }).then((heroes) => {

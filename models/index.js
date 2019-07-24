@@ -3,7 +3,8 @@ const allConfigs = require('../config/sequelize')
 const TeamsModel = require('./teams')
 const HeroesModel = require('./heroes')
 
-const config = allConfigs['development']
+const environment = process.env.NODE_ENV ? process.env.NODE_ENV : 'development'
+const config = allConfigs[environment]
 
 const connection = new Sequelize(config.database, config.username, config.password, {
   host: config.host,

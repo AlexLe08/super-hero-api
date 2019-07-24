@@ -7,5 +7,12 @@ module.exports = {
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     dialect: 'mysql',
+  },
+  production: {
+    host: process.env.RDS_HOSTNAME,
+    database: process.env.RDS_DB_NAME,
+    username: process.env.RDS_USERNAME,
+    password: process.env.RDS_PASSWORD,
+    dialect: "mysql",
   }
 }
